@@ -277,6 +277,22 @@ async function markSold(id){
   renderDashboard();
 }
 
+// Borra todo el historial de ventas (ej: para sacar datos de prueba/ejemplo).
+// No modifica el stock ni los productos — si alguna venta de prueba había
+// descontado stock, corregilo a mano en Productos después de borrar.
+async function clearSalesHistory(){
+  if (ADMIN_SALES.length === 0){ toast('No hay ventas registradas.'); return; }
+  const ok1 = confirm(`Esto va a borrar las ${ADMIN_SALES.length} ventas registradas (no se puede deshacer). ¿Continuar?`);
+  if (!ok1) return;
+  const ok2 = confirm('Confirmá de nuevo: se va a vaciar todo el historial de ventas y ganancias. ¿Seguro?');
+  if (!ok2) return;
+
+  await DB.clearSales();
+  ADMIN_SALES = [];
+  renderDashboard();
+  toast('Historial de ventas borrado.');
+}
+
 // ---------- VENTAS Y GANANCIAS (ganancia real: vendido - invertido) ----------
 function renderDashboard(){
   const wStart = startOfWeek();
