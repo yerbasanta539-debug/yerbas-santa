@@ -128,6 +128,23 @@ const DB = {
       return;
     }
     await db.collection('sales').add(sale);
+  },
+
+  // Borra TODO el historial de ventas (no toca productos ni stock).
+  async clearSales(){
+    if (DEMO_MODE){
+      localStorage.removeItem('ys_sales');
+      return;
+    }
+    const snap = await db.collection('sales').get();
+    // Firestore permite hasta 500 borrados por lote; para una tienda
+    // chica alcanza de sobra, pero lo dividimos igual por las dudas.
+    const docs = snap.docs;
+    for (let i = 0; i < docs.length; i += 450){
+      const batch = db.batch();
+      docs.slice(i, i + 450).forEach(d => batch.delete(d.ref));
+      await batch.commit();
+    }
   }
 };
 
