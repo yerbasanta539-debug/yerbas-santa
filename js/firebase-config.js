@@ -1,16 +1,14 @@
 /* ==========================================================
    CONFIGURACIÓN DE FIREBASE
-   Reemplazá los valores de abajo por los que te da tu propio
-   proyecto de Firebase.
    ========================================================== */
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_PROYECTO.firebaseapp.com",
-  projectId: "TU_PROYECTO",
-  storageBucket: "TU_PROYECTO.appspot.com",
-  messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyD_K8BEDDfk0PRYeO1_26Un1lZVbDRwMy4",
+  authDomain: "yerbas-santa-47cbf.firebaseapp.com",
+  projectId: "yerbas-santa-47cbf",
+  storageBucket: "yerbas-santa-47cbf.firebasestorage.app",
+  messagingSenderId: "596170771719",
+  appId: "1:596170771719:web:397e2590801b1848ec49a2"
 };
 
 // No hace falta cambiar este email: es solo la cuenta interna
@@ -22,6 +20,5 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 
 // Si dejaste los valores de arriba sin completar, la web funciona
-// igual en "modo demo" (datos guardados solo en este navegador),
-// para que puedas ver el diseño mientras configurás Firebase.
+// igual en "modo demo" (datos guardados solo en este navegador).
 const DEMO_MODE = firebaseConfig.apiKey === "TU_API_KEY";
